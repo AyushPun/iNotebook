@@ -21,5 +21,5 @@ const UserSchema = new Schema({
     }
   });
   const User = mongoose.model('user', UserSchema);
-  User.createIndexes()  //no duplicate data will be saved in database atall
+//   User.createIndexes()  //no duplicate data will be saved in database atall
   module.exports = User
