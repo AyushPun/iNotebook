@@ -57,7 +57,7 @@ router.post(
       const data = {
         user: {
           id: user.id,
-        },
+        }
       };
       const authToken = jwt.sign(data, jwtSecret);
       // console.log(authToken);
@@ -104,7 +104,7 @@ router.post(
       const data = {
         user: {
           id: user.id,
-        },
+        }
       };
 
       const authToken = jwt.sign(data, jwtSecret);
@@ -117,7 +117,6 @@ router.post(
 );
 
 //ROUTE 3 : Get loggedin User details: POST "/api/auth/getuser".login required
-
 router.post(
   "/getuser",
 

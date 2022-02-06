@@ -10,7 +10,8 @@ const fetchUser = (req, res, next) => {
     res.status(401).send({ error: "Please authenticate using a valid token" });
   }
   try {
-    const data = jwt.verify(token, jwtSecret);
+    const data = jwt.verify(token, jwtSecret);  //decoding of token and getting the payload which has been send while login
+    // console.log(data);   // {user:{ id: user.id }}
     req.user = data.user;
     next();
   } catch (error) {
