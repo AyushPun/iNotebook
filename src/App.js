@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Home from "./components/Home";
 import About from "./components/About";
-import NoteState from "./context/notes/NoteState" //importing NoteState context API from where states of note component will be available to all the children(under NoteState Component) 
+import NoteState from "./context/notes/NoteState"; //importing NoteState context API from where states of note component will be available to all the children(under NoteState Component)
 
 function App() {
   return (
@@ -11,14 +11,16 @@ function App() {
       <NoteState>
         <Router>
           <Navbar />
-          <Switch>
-            <Route exact path="/">
-              <Home />
-            </Route>
-            <Route exact path="/about">
-              <About />
-            </Route>
-          </Switch>
+          <div className="container">
+            <Switch>
+              <Route exact path="/">
+                <Home />
+              </Route>
+              <Route exact path="/about">
+                <About />
+              </Route>
+            </Switch>
+          </div>
         </Router>
       </NoteState>
     </>
