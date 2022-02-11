@@ -36,6 +36,9 @@ const NoteState = (props) => {
       body: JSON.stringify({title, description, tag})
     });
 
+    const json = await response.json();
+    console.log(json);
+
     console.log("Adding a new note");
     const note = {
       _id: "61ffd51ae43d44893c6y35d2",
@@ -60,8 +63,10 @@ const NoteState = (props) => {
           "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjFmZDQ4ZGIyZTJmMzg4M2M3NjZmODQzIn0sImlhdCI6MTY0NDE0NTU5OH0.RiwLUgUgJJokD2aY4xDmuUaQxg2JFmULH0FPxu3L6GA",
       },
     });
-    const res_json = response.json();
-    console.log(res_json);
+
+    const json = await response.json();
+    console.log(json);
+
     console.log("Deleting the note with id" + id);
     const newNotes = notes.filter((note) => {
       return note._id !== id;
@@ -79,20 +84,26 @@ const NoteState = (props) => {
         "auth-token":
           "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjFmZDQ4ZGIyZTJmMzg4M2M3NjZmODQzIn0sImlhdCI6MTY0NDE0NTU5OH0.RiwLUgUgJJokD2aY4xDmuUaQxg2JFmULH0FPxu3L6GA",
       },
-      body: JSON.stringify({title, description,tag}),
+      body: JSON.stringify({title, description, tag}),
     });
-    const res_json = response.json();
+
+    const json = await response.json();
+    console.log(json);
 
     //Logic to edit in client
-    for (let index = 0; index < notes.length; index++) {
-      const element = notes[index];
+    let newNotes = JSON.parse(JSON.stringify(notes)); //will make a deep copy of notes
+    for (let index = 0; index < newNotes.length; index++) {
+      const element = newNotes[index];
       if (element._id == id) {
-        element.title = title;
-        element.description = description;
-        element.tag = tag;
+        newNotes[index].title = title;
+        newNotes[index].description = description;
+        newNotes[index].tag = tag;
+        break;
       }
     }
+    setNotes(newNotes);
   };
+
   return (
     //"NoteContext.Provider" will provide all state of note
     <NoteContext.Provider
