@@ -23,7 +23,7 @@ const Notes = () => {
   }
 
   const handleSubmit = (e) => {
-    console.log("Updating the note...", note)
+    // console.log("Updating the note...", note)
     editNote(note.id, note.etitle, note.edescription, note.etag);
     refClose.current.click();
   };
@@ -62,6 +62,8 @@ const Notes = () => {
                     aria-describedby="emailHelp"
                     onChange={onChange}
                     value={note.etitle}
+                    minLength={5} 
+                    required
                   />
                 </div>
                 <div className="form-group">
@@ -73,6 +75,8 @@ const Notes = () => {
                     name="edescription"
                     onChange={onChange}
                     value={note.edescription}
+                    minLength={5} 
+                    required
                   />
                 </div>
 
@@ -91,7 +95,7 @@ const Notes = () => {
             </div>
             <div className="modal-footer">
               <button type="button" className="btn btn-secondary" data-bs-dismiss="modal" ref={refClose}>Close</button>
-              <button type="button" className="btn btn-primary" onClick={handleSubmit}>Update Note</button>
+              <button type="button" className="btn btn-primary" onClick={handleSubmit}  disabled={note.etitle.length < 5 || note.edescription.length < 5} >Update Note</button>
             </div>
           </div>
         </div>
@@ -100,6 +104,9 @@ const Notes = () => {
       <div className="row my-3">
         <h2>Your Notes</h2>
         {/*Read*/}
+        <div className="container mx-2">
+        {notes.length === 0 && 'No Notes To Display'}
+        </div>
         {notes.map((note) => (
           <Noteitem note={note} updateNote={updateNote} key={note._id} />
         ))}

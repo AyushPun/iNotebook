@@ -19,8 +19,8 @@ const NoteState = (props) => {
     });
     const res_json = await response.json();
     setNotes(res_json);
-    console.log("Fetching All Notes");
-    console.log(res_json);
+    // console.log("Fetching All Notes");
+    // console.log(res_json);
   };
 
   //Add a Note
@@ -36,19 +36,7 @@ const NoteState = (props) => {
       body: JSON.stringify({title, description, tag})
     });
 
-    const json = await response.json();
-    console.log(json);
-
-    console.log("Adding a new note");
-    const note = {
-      _id: "61ffd51ae43d44893c6y35d2",
-      user: "61fd48db2e2f3883c766f843",
-      title: title,
-      description: description,
-      tag: tag,
-      date: "2022-02-06T14:03:06.906Z",
-      __v: 0,
-    };
+    const note = await response.json();
     setNotes(notes.concat(note));
   };
 
@@ -65,9 +53,9 @@ const NoteState = (props) => {
     });
 
     const json = await response.json();
-    console.log(json);
+    // console.log(json);
 
-    console.log("Deleting the note with id" + id);
+    // console.log("Deleting the note with id" + id);
     const newNotes = notes.filter((note) => {
       return note._id !== id;
     });
@@ -88,7 +76,7 @@ const NoteState = (props) => {
     });
 
     const json = await response.json();
-    console.log(json);
+    // console.log(json);
 
     //Logic to edit in client
     let newNotes = JSON.parse(JSON.stringify(notes)); //will make a deep copy of notes
