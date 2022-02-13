@@ -6,3 +6,21 @@ body {
 .card-body i {
     cursor: pointer;
 }
+
+/* signup and login form  */
+.top {
+    margin-bottom: 3px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+  
+.middle {
+    margin-bottom: 3px;
+    border-radius: 0;
+  }
+  
+.bottom {
+    margin-bottom: 10px;
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
+  }

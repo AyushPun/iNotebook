@@ -1,5 +1,6 @@
 import React from "react";
 import { Link, useLocation} from "react-router-dom";
+import logo from '../images/logo.png';
 
 const Navbar = () => {
   let location = useLocation();
@@ -11,7 +12,8 @@ const Navbar = () => {
     <div>
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
         <div className="container-fluid">
-          <Link className="navbar-brand" to="/">
+          <Link className="navbar-brand d-flex align-items-end" to="/">
+          <img src={logo} alt="Logo" width="30px" height="30px" className="mx-2"/>
             iNotebook
           </Link>
           <button
@@ -38,17 +40,12 @@ const Navbar = () => {
                 </Link>
               </li>
             </ul>
-            <form className="d-flex">
-              <input
-                className="form-control me-2"
-                type="search"
-                placeholder="Search"
-                aria-label="Search"
-              />
-              <button className="btn btn-outline-success" type="submit">
-                Search
-              </button>
-            </form>
+              <Link className="btn btn-primary mx-1" to="/login" role="button">
+                Login
+              </Link>
+              <Link className="btn btn-primary mx-1" to="/signup" role="button">
+                Singup
+              </Link>
           </div>
         </div>
       </nav>
