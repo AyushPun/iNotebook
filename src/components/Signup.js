@@ -2,7 +2,7 @@ import React , {useState} from 'react'
 import signupLogo from '../images/signupLogo.jpeg'
 import { useHistory } from 'react-router-dom'
 
-const Signup = () => {
+const Signup = ({showAlert}) => {
   
   const [credentials, setCredentials] = useState({name: "", email: "", password: "", cpassword: ""})
   let history = useHistory()
@@ -29,8 +29,9 @@ const Signup = () => {
       //Saving the auth token and redirect
       localStorage.setItem('token', json.authtoken);
       history.push("/");
+      showAlert("Account Created Successfully", "success");
     } else {
-      alert("Invalid Credentials");
+      showAlert("Invalid Credentials", "danger");
     }
   }
   return (
