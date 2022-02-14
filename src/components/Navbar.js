@@ -1,12 +1,20 @@
 import React from "react";
 import { Link, useLocation} from "react-router-dom";
 import logo from '../images/logo.png';
+import { useHistory } from "react-router-dom";
 
 const Navbar = () => {
+
   let location = useLocation();
   // useEffect(()=> {
   //   // console.log(location.pathname);
   // }, [location]);
+  let history = useHistory();
+
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    history.push('/login');
+  }
 
   return (
     <div>
@@ -40,12 +48,24 @@ const Navbar = () => {
                 </Link>
               </li>
             </ul>
-              <Link className="btn btn-primary mx-1" to="/login" role="button">
-                Login
-              </Link>
-              <Link className="btn btn-primary mx-1" to="/signup" role="button">
-                Singup
-              </Link>
+
+
+               {
+                !localStorage.getItem('token') ? 
+                <div>
+                  <Link className="btn btn-primary mx-1" to="/login" role="button">
+                    Login
+                  </Link>
+                  <Link className="btn btn-primary mx-1" to="/signup" role="button">
+                    Singup
+                  </Link> 
+                </div> : 
+                  <Link className="btn btn-primary mx-2" role="button" onClick={handleLogout}>
+                    Logout
+                  </Link> 
+                }
+
+
           </div>
         </div>
       </nav>
